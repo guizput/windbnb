@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 const Nav = () => {
   return (
     <div className="bg-white">
-      <div className="max-w-5xl mx-auto p-4 sm:flex sm:items-center sm:justify-between sm:py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8 sm:flex sm:items-center sm:justify-between sm:py-8">
         <Logo />
         <div className="flex mt-10 max-w-sm mx-auto sm:m-0">
           <input
