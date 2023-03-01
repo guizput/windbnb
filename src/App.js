@@ -1,8 +1,9 @@
+import Nav from './components/Nav.js';
 
 const App = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Nav />
     </div>
   );
 };
