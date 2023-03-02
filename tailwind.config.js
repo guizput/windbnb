@@ -7,9 +7,10 @@ module.exports = {
       },
       colors: {
         windbnb: "#EB5757",
+        'windbnb-dark': "#c34a4a"
       },
       transitionProperty: {
-        width: "width",
+        width: "width"
       },
       spacing: {
         "48p": "48%",

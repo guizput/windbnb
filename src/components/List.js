@@ -5,7 +5,7 @@ const List = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 pb-10">
       <div className="flex items-center justify-between py-4">
-        <h3 className="font-bold text-lg">Stays in Finland</h3>{" "}
+        <h3 className="font-bold text-lg">Stays in Finland</h3>
         <span className="font-medium text-sm">12 stays</span>
       </div>
       <ul className="flex flex-wrap max-w-sm mx-auto sm:max-w-none sm:mx-0 sm:justify-between">

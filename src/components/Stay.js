@@ -21,7 +21,7 @@ const Stay = ({ stay }) => {
           </span>
         </div>
         <div className="flex items-center">
-          <StarIcon className="h-4 w-4 text-windbnb mr-1" />{" "}
+          <StarIcon className="h-4 w-4 text-windbnb mr-1" />
           <span className="font-medium text-xs">{stay.rating}</span>
         </div>
       </div>
