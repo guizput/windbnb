@@ -2,8 +2,8 @@ import { XMarkIcon, MagnifyingGlassIcon, MapPinIcon } from "@heroicons/react/24/
 
 const Search = ({search, setSearch}) => {
     return (
-        <div className={(search ? 'translate-y-0' : '-translate-y-full') + ' w-full h-full transform transition fixed top-0 left-0 bg-white z-10 p-4'}>
-            <div className="flex items-center justify-between">
+        <div className={(search ? 'translate-y-0' : '-translate-y-full') + ' w-full h-full transform transition fixed top-0 left-0 bg-white z-10 px-4 py-8'}>
+            <div className="flex items-center justify-between max-w-4xl mx-auto">
                 <h3 className="font-bold text-sm">Edit your search</h3>
                 <button onClick={() => setSearch(false)}>
                     <XMarkIcon className="h-6 w-6 text-gray-700" />
