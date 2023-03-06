@@ -3,8 +3,18 @@ import {
   MagnifyingGlassIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
+import { useState, useEffect } from "react";
+import useFilter from "../hooks/useFilter.js";
 
-const Search = ({ search, setSearch }) => {
+const Search = ({ search, setSearch, setStays }) => {
+  const [filter, setFilter] = useState({
+    city: "Oulu",
+    country: "Finland",
+    guests: 2,
+  });
+  useEffect(() => {
+    setStays(useFilter(filter));
+  }, [filter]);
   return (
     <div
       className={

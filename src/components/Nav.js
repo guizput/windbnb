@@ -3,7 +3,7 @@ import Search from "./Search.js";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-const Nav = () => {
+const Nav = ({ setStays }) => {
   const [search, setSearch] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ const Nav = () => {
           </span>
         </div>
       </div>
-      <Search search={search} setSearch={setSearch} />
+      <Search search={search} setSearch={setSearch} setStays={setStays} />
     </div>
   );
 };
