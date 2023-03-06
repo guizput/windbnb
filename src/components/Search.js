@@ -6,11 +6,27 @@ import {
 import { useState, useEffect } from "react";
 import useFilter from "../hooks/useFilter.js";
 
-const Search = ({ search, setSearch, stays, setStays }) => {
+const Search = ({
+  search,
+  setSearch,
+  stays,
+  setStays,
+  location,
+  setLocation,
+  guests,
+  setGuests,
+}) => {
   const [filter, setFilter] = useState({});
   const [showSuggest, setshowSuggest] = useState(false);
-  const [location, setLocation] = useState("");
-  const [guests, setGuests] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearch(false);
+    setFilter({
+      city: location.split(", ")[0],
+      country: location.split(", ")[1],
+      guests: guests,
+    });
+  };
   useEffect(() => {
     setStays(useFilter(filter));
   }, [filter]);
@@ -28,7 +44,7 @@ const Search = ({ search, setSearch, stays, setStays }) => {
         </button>
       </div>
       <div className="mx-auto max-w-sm sm:max-w-4xl">
-        <form className="mt-10 sm:flex">
+        <form className="mt-10 sm:flex" onSubmit={handleSubmit}>
           <fieldset className="relative w-full sm:w-2/5">
             <label
               className="absolute top-4 left-4 text-xs font-bold uppercase"
@@ -42,6 +58,7 @@ const Search = ({ search, setSearch, stays, setStays }) => {
               type="text"
               placeholder="Where?"
               required
+              autoComplete="off"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               onFocus={() => setshowSuggest(true)}
@@ -60,6 +77,7 @@ const Search = ({ search, setSearch, stays, setStays }) => {
               type="text"
               placeholder="Add guests"
               required
+              autoComplete="off"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               onFocus={() => setshowSuggest(true)}
@@ -68,15 +86,6 @@ const Search = ({ search, setSearch, stays, setStays }) => {
           <button
             type="submit"
             className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform items-center justify-center rounded-2xl bg-windbnb px-6 py-4 text-white transition hover:bg-windbnb-dark sm:static sm:w-1/5 sm:translate-x-0 sm:rounded-l-none"
-            onClick={(e) => {
-              e.preventDefault();
-              setSearch(false);
-              setFilter({
-                city: location.split(", ")[0],
-                country: location.split(", ")[1],
-                guests: guests,
-              });
-            }}
           >
             <MagnifyingGlassIcon className="mr-2 h-5 w-5 text-white" />
             Search
