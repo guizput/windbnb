@@ -1,8 +1,9 @@
 import { StarIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 
 const Stay = ({ stay }) => {
   return (
-    <div>
+    <Link to={`/stays/${stay.id}`}>
       <img
         className="h-60 w-full rounded-2xl object-cover"
         src={stay.photo}
@@ -26,7 +27,7 @@ const Stay = ({ stay }) => {
         </div>
       </div>
       <h3 className="mt-4 text-sm font-semibold">{stay.title}</h3>
-    </div>
+    </Link>
   );
 };
 
