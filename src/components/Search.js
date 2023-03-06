@@ -6,12 +6,11 @@ import {
 import { useState, useEffect } from "react";
 import useFilter from "../hooks/useFilter.js";
 
-const Search = ({ search, setSearch, setStays }) => {
-  const [filter, setFilter] = useState({
-    city: "Oulu",
-    country: "Finland",
-    guests: 2,
-  });
+const Search = ({ search, setSearch, stays, setStays }) => {
+  const [filter, setFilter] = useState({});
+  const [showSuggest, setshowSuggest] = useState(false);
+  const [location, setLocation] = useState("");
+  const [guests, setGuests] = useState("");
   useEffect(() => {
     setStays(useFilter(filter));
   }, [filter]);
@@ -29,7 +28,7 @@ const Search = ({ search, setSearch, setStays }) => {
         </button>
       </div>
       <div className="mx-auto max-w-sm sm:max-w-4xl">
-        <div className="mt-10 sm:flex">
+        <form className="mt-10 sm:flex">
           <fieldset className="relative w-full sm:w-2/5">
             <label
               className="absolute top-4 left-4 text-xs font-bold uppercase"
@@ -42,6 +41,10 @@ const Search = ({ search, setSearch, setStays }) => {
               id="location-search"
               type="text"
               placeholder="Where?"
+              required
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              onFocus={() => setshowSuggest(true)}
             />
           </fieldset>
           <fieldset className="relative w-full sm:w-2/5">
@@ -56,23 +59,49 @@ const Search = ({ search, setSearch, setStays }) => {
               id="guest-search"
               type="text"
               placeholder="Add guests"
+              required
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+              onFocus={() => setshowSuggest(true)}
             />
           </fieldset>
-          <button className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform items-center justify-center rounded-2xl bg-windbnb px-6 py-4 text-white transition hover:bg-windbnb-dark sm:static sm:w-1/5 sm:translate-x-0 sm:rounded-l-none">
+          <button
+            type="submit"
+            className="absolute bottom-8 left-1/2 flex -translate-x-1/2 transform items-center justify-center rounded-2xl bg-windbnb px-6 py-4 text-white transition hover:bg-windbnb-dark sm:static sm:w-1/5 sm:translate-x-0 sm:rounded-l-none"
+            onClick={(e) => {
+              e.preventDefault();
+              setSearch(false);
+              setFilter({
+                city: location.split(", ")[0],
+                country: location.split(", ")[1],
+                guests: guests,
+              });
+            }}
+          >
             <MagnifyingGlassIcon className="mr-2 h-5 w-5 text-white" />
             Search
           </button>
-        </div>
-        <ul className="flex flex-wrap space-y-8 py-8">
-          <li className="flex w-full items-center">
-            <MapPinIcon className="mr-2 h-5 w-5 text-gray-700" />
-            <span className="leading-none">Helsinki, Finland</span>
-          </li>
-          <li className="flex w-full items-center">
-            <MapPinIcon className="mr-2 h-5 w-5 text-gray-700" />
-            <span className="leading-none">Helsinki, Finland</span>
-          </li>
-        </ul>
+        </form>
+        {showSuggest && (
+          <ul className="flex max-h-80 flex-wrap overflow-y-scroll">
+            {stays.map((stay) => (
+              <li
+                className="flex w-full cursor-pointer items-center py-4 transition-colors hover:bg-gray-200"
+                key={stay.id}
+                onClick={() => {
+                  setLocation(`${stay.city}, ${stay.country}`);
+                  setGuests(stay.maxGuests);
+                  setshowSuggest(false);
+                }}
+              >
+                <MapPinIcon className="mr-2 h-5 w-5 text-gray-700" />
+                <span className="leading-none">
+                  {stay.city}, {stay.country}, {stay.maxGuests} guests
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

@@ -2,8 +2,9 @@ import Logo from "./Logo.js";
 import Search from "./Search.js";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import useFilter from "../hooks/useFilter.js";
 
-const Nav = ({ setStays }) => {
+const Nav = ({ stays, setStays }) => {
   const [search, setSearch] = useState(false);
 
   return (
@@ -12,7 +13,10 @@ const Nav = ({ setStays }) => {
         <Logo />
         <div
           className="mx-auto mt-10 flex max-w-sm sm:m-0"
-          onClick={() => setSearch(true)}
+          onClick={() => {
+            setSearch(true);
+            setStays(useFilter({}));
+          }}
         >
           <input
             className="w-2/5 rounded-l-xl border-2 border-r-0 border-gray-200 p-4"
@@ -29,7 +33,12 @@ const Nav = ({ setStays }) => {
           </span>
         </div>
       </div>
-      <Search search={search} setSearch={setSearch} setStays={setStays} />
+      <Search
+        search={search}
+        setSearch={setSearch}
+        stays={stays}
+        setStays={setStays}
+      />
     </div>
   );
 };

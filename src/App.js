@@ -6,7 +6,7 @@ const App = () => {
   const [stays, setStays] = useState([]);
   return (
     <div>
-      <Nav setStays={setStays} />
+      <Nav stays={stays} setStays={setStays} />
       <List stays={stays} />
     </div>
   );
