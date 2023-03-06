@@ -1,14 +1,19 @@
 import Nav from "./components/Nav.js";
-import List from "./components/List.js";
+import Home from "./components/Home.js";
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   const [stays, setStays] = useState([]);
   return (
-    <div>
+    <Router>
       <Nav stays={stays} setStays={setStays} />
-      <List stays={stays} />
-    </div>
+      <Switch>
+        <Route path="/">
+          <Home stays={stays} />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

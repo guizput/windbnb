@@ -1,6 +1,6 @@
 import Stay from "./Stay.js";
 
-const List = ({ stays }) => {
+const Home = ({ stays }) => {
   const getLocation = (stays) => {
     const arr = stays.map((x) => `${x.city}, ${x.country}`);
     const filt = arr.filter((x, index) => arr.indexOf(x) === index);
@@ -29,4 +29,4 @@ const List = ({ stays }) => {
   );
 };
 
-export default List;
+export default Home;
