@@ -8,23 +8,23 @@ const Nav = () => {
 
   return (
     <div className="bg-white">
-      <div className="max-w-5xl mx-auto px-4 py-8 sm:flex sm:items-center sm:justify-between sm:py-8">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:flex sm:items-center sm:justify-between sm:py-8">
         <Logo />
         <div
-          className="flex mt-10 max-w-sm mx-auto sm:m-0"
+          className="mx-auto mt-10 flex max-w-sm sm:m-0"
           onClick={() => setSearch(true)}
         >
           <input
-            className="w-2/5 p-4 rounded-l-xl border-gray-200 border-2 border-r-0"
+            className="w-2/5 rounded-l-xl border-2 border-r-0 border-gray-200 p-4"
             type="text"
             placeholder="Where?"
           />
           <input
-            className="w-2/5 p-4 border-gray-200 border-2"
+            className="w-2/5 border-2 border-gray-200 p-4"
             type="text"
             placeholder="Add guests"
           />
-          <span className="w-1/5 rounded-r-xl border-gray-200 border-2 border-l-0 flex justify-center items-center">
+          <span className="flex w-1/5 items-center justify-center rounded-r-xl border-2 border-l-0 border-gray-200">
             <MagnifyingGlassIcon className="h-5 w-5 text-windbnb" />
           </span>
         </div>
